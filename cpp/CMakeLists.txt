@@ -8,15 +8,16 @@ configure_file(${CMAKE_CURRENT_SOURCE_DIR}/grpc4bmi.pc.cmake
 
 if (NOT DEFINED CMAKE_CXX_STANDARD)
   set (CMAKE_CXX_STANDARD 17)
+  set (CMAKE_CXX_STANDARD_REQUIRED ON)
 endif()
 
 find_package(Threads REQUIRED)
 find_package(Protobuf REQUIRED)
-find_package(abseil REQUIRED)
 message(STATUS "Using protobuf ${Protobuf_VERSION}")
 find_program(GRPC_CPP_PLUGIN grpc_cpp_plugin REQUIRED)
 find_library(GRPCREFLECTION grpc++_reflection)
 find_library(GRPCLIB grpc CONFIG REQUIRED)
+find_library(ABSEILLIB abseil)
 message(STATUS "Using gRPC ${GRPCLIB_VERSION}")
 find_package(PkgConfig REQUIRED)
 pkg_check_modules(BMI REQUIRED IMPORTED_TARGET bmic bmicxx)
@@ -53,7 +54,7 @@ target_link_libraries(
     ${GRPCREFLECTION}
     ${GRPC}
     ${PROTOBUF_LIBRARY}
-    ${ABSEIL_LIBRARY}
+    ${ABSEILLIB}
 )
 set_target_properties(grpc4bmi PROPERTIES PUBLIC_HEADER "bmi_cpp_extension.h;bmi_c_wrapper.h;bmi_grpc_server.h;${GRPC_HDR_FILES}")
 add_subdirectory (test)
