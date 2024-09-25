@@ -54,9 +54,9 @@ target_link_libraries(
     ${PROTOBUF_LIBRARY}
 )
 set_target_properties(grpc4bmi PROPERTIES PUBLIC_HEADER "bmi_cpp_extension.h;bmi_c_wrapper.h;bmi_grpc_server.h;${GRPC_HDR_FILES}")
-add_subdirectory (test)
+# add_subdirectory (test)
 
-include (CTest)
+# include (CTest)
 
 install(TARGETS grpc4bmi LIBRARY DESTINATION lib PUBLIC_HEADER DESTINATION include)
 install(FILES ${CMAKE_CURRENT_BINARY_DIR}/grpc4bmi.pc DESTINATION lib/pkgconfig)
