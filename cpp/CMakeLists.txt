@@ -12,6 +12,7 @@ endif()
 
 find_package(Threads REQUIRED)
 find_package(Protobuf REQUIRED)
+find_package(abseil REQUIRED)
 message(STATUS "Using protobuf ${Protobuf_VERSION}")
 find_program(GRPC_CPP_PLUGIN grpc_cpp_plugin REQUIRED)
 find_library(GRPCREFLECTION grpc++_reflection)
@@ -52,6 +53,7 @@ target_link_libraries(
     ${GRPCREFLECTION}
     ${GRPC}
     ${PROTOBUF_LIBRARY}
+    ${ABSEIL_LIBRARY}
 )
 set_target_properties(grpc4bmi PROPERTIES PUBLIC_HEADER "bmi_cpp_extension.h;bmi_c_wrapper.h;bmi_grpc_server.h;${GRPC_HDR_FILES}")
 # add_subdirectory (test)
