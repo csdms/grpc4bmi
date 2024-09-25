@@ -1,10 +1,10 @@
 cmake_minimum_required (VERSION 2.6)
 
-add_executable(test_cpp_extension test_bmi_cpp_extension.cc bmi_test_extension.h bmi_test_extension.cc)
-target_link_libraries(test_cpp_extension grpc4bmi)
-
 add_executable(test_bmi_service test_bmi_grpc_server.cc bmi_test_extension.h bmi_test_extension.cc)
 target_link_libraries(test_bmi_service grpc4bmi)
+
+add_executable(test_cpp_extension test_bmi_cpp_extension.cc bmi_test_extension.h bmi_test_extension.cc)
+target_link_libraries(test_cpp_extension grpc4bmi)
 
 include (CTest)
 
