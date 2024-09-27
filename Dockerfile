@@ -7,17 +7,17 @@ LABEL email="g.vandenoord@esciencecenter.nl"
 
 # Prerequisite packages
 RUN apt-get update && apt-get install -y \
-    wget \
-    git \
+    automake \
     build-essential \
-    g++ \
-    make \
     cmake \
     curl \
-    automake \
+    g++ \
+    gfortran \
+    git \
     libtool \
+    make \
     pkg-config \
-    gfortran
+    wget
 
 # Build grpc from source
 RUN git clone -b $(curl -L https://grpc.io/release) --depth=1 https://github.com/grpc/grpc /opt/grpc
