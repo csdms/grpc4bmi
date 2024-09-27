@@ -1,4 +1,4 @@
-cmake_minimum_required (VERSION 3.6)
+cmake_minimum_required (VERSION 3.12)
 
 project (grpc4bmi C CXX)
 set (GRPC4BMI_VERSION 0.5.0-dev0)
