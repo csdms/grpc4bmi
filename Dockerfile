@@ -1,7 +1,7 @@
 # DockerFile for grpc4bmi. Installs the C++ bindings in the /usr/local prefix directory in the container. If you are
 # planning to run a container with your BMI-enabled model and communicate with it using grpc4bmi, you can use this as a
 # base image for your model
-FROM ubuntu:bionic
+FROM ubuntu:24.04
 MAINTAINER Gijs van den Oord <g.vandenoord@esciencecenter.nl>
 RUN apt-get update
 
