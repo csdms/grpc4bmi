@@ -4,10 +4,20 @@
 FROM ubuntu:24.04
 LABEL author="Gijs van den Oord"
 LABEL email="g.vandenoord@esciencecenter.nl"
-RUN apt-get update
 
 # Prerequisite packages
-RUN apt-get install -y wget git build-essential g++ make cmake curl automake libtool pkg-config gfortran
+RUN apt-get update && apt-get install -y \
+    wget \
+    git \
+    build-essential \
+    g++ \
+    make \
+    cmake \
+    curl \
+    automake \
+    libtool \
+    pkg-config \
+    gfortran
 
 # Build grpc from source
 RUN git clone -b $(curl -L https://grpc.io/release) --depth=1 https://github.com/grpc/grpc /opt/grpc
