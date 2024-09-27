@@ -17,7 +17,8 @@ RUN apt-get update && apt-get install -y \
     libtool \
     make \
     pkg-config \
-    wget
+    wget \
+    && rm -rf /var/lib/apt/lists/*
 
 # Build grpc from source
 RUN git clone -b $(curl -L https://grpc.io/release) --depth=1 https://github.com/grpc/grpc /opt/grpc
