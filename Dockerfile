@@ -17,6 +17,7 @@ RUN apt-get update && apt-get install -y \
     gfortran \
     git \
     libtool \
+    libssl-dev \
     make \
     pkg-config \
     wget \
