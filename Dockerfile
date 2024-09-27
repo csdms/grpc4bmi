@@ -2,7 +2,8 @@
 # planning to run a container with your BMI-enabled model and communicate with it using grpc4bmi, you can use this as a
 # base image for your model
 FROM ubuntu:24.04
-MAINTAINER Gijs van den Oord <g.vandenoord@esciencecenter.nl>
+LABEL author="Gijs van den Oord"
+LABEL email="g.vandenoord@esciencecenter.nl"
 RUN apt-get update
 
 # Prerequisite packages
