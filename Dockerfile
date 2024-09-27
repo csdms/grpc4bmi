@@ -23,7 +23,7 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 # Build grpc from source
-RUN git clone -b ${GRPC_VERSION} --depth 1 https://github.com/grpc/grpc /opt/grpc
+RUN git clone -b v${GRPC_VERSION} --depth 1 https://github.com/grpc/grpc /opt/grpc
 WORKDIR /opt/grpc
 RUN git submodule update --init --recursive
 WORKDIR /opt/grpc/cmake/_build
