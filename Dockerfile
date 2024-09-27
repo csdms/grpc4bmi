@@ -5,6 +5,8 @@ FROM ubuntu:24.04
 LABEL author="Gijs van den Oord"
 LABEL email="g.vandenoord@esciencecenter.nl"
 
+ENV GRPC_VERSION="1.66.1"
+
 # Prerequisite packages
 RUN apt-get update && apt-get install -y \
     automake \
@@ -21,11 +23,15 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 # Build grpc from source
-RUN git clone -b $(curl -L https://grpc.io/release) --depth=1 https://github.com/grpc/grpc /opt/grpc
+RUN git clone -b ${GRPC_VERSION} --depth 1 https://github.com/grpc/grpc /opt/grpc
 WORKDIR /opt/grpc
 RUN git submodule update --init --recursive
-RUN make install
-WORKDIR third_party/protobuf
+WORKDIR /opt/grpc/cmake/_build
+RUN cmake ../.. \
+    -DgRPC_INSTALL=ON \
+    -DgRPC_SSL_PROVIDER=package \
+    -DgRPC_BUILD_TESTS=OFF \
+    -DBUILD_SHARED_LIBS=ON
 RUN make install
 
 # Build bmi-c from source
