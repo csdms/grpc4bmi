@@ -29,11 +29,12 @@ WORKDIR /opt/grpc
 RUN git submodule update --init --recursive
 WORKDIR /opt/grpc/cmake/_build
 RUN cmake ../.. \
-    -DgRPC_INSTALL=ON \
-    -DgRPC_SSL_PROVIDER=package \
-    -DgRPC_BUILD_TESTS=OFF \
-    -DBUILD_SHARED_LIBS=ON
-RUN make install
+        -DgRPC_INSTALL=ON \
+        -DgRPC_SSL_PROVIDER=package \
+        -DgRPC_BUILD_TESTS=OFF \
+        -DBUILD_SHARED_LIBS=ON && \
+    make install && \
+    make clean
 
 # Build bmi-c from source
 RUN git clone --depth=1 https://github.com/eWaterCycle/grpc4bmi.git /opt/grpc4bmi
