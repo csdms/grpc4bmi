@@ -6,6 +6,8 @@ LABEL author="Gijs van den Oord"
 LABEL email="g.vandenoord@esciencecenter.nl"
 
 ENV GRPC_VERSION="1.66.1"
+ENV BMIC_VERSION="2.1.2"
+ENV BMICXX_VERSION="2.0.2"
 
 # Prerequisite packages
 RUN apt-get update && apt-get install -y \
@@ -37,13 +39,16 @@ RUN cmake ../.. \
     make clean
 
 # Build bmi-c from source
-RUN git clone --depth=1 https://github.com/eWaterCycle/grpc4bmi.git /opt/grpc4bmi
-WORKDIR /opt/grpc4bmi
-RUN git submodule update --init --recursive
-RUN mkdir -p /opt/grpc4bmi/cpp/bmi-c/build
-WORKDIR /opt/grpc4bmi/cpp/bmi-c/build
-RUN cmake ..
-RUN make install
+RUN git clone --branch v${BMIC_VERSION} https://github.com/csdms/bmi-c /opt/bmi-c
+WORKDIR /opt/bmi-c/_build
+RUN cmake .. && \
+    make install && \
+    make clean
+RUN git clone --branch v${BMICXX_VERSION} https://github.com/csdms/bmi-cxx /opt/bmi-cxx
+WORKDIR /opt/bmi-cxx/_build
+RUN cmake .. && \
+    make install && \
+    make clean
 
 # Build grpc4bmi from source
 RUN mkdir -p /opt/grpc4bmi/cpp/build
