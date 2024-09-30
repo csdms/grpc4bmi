@@ -51,7 +51,14 @@ RUN cmake .. && \
     make clean
 
 # Build grpc4bmi from source
-RUN mkdir -p /opt/grpc4bmi/cpp/build
-WORKDIR /opt/grpc4bmi/cpp/build
-RUN cmake ..
-RUN make install
+RUN git clone --branch update-dockerfile --depth 1 https://github.com/csdms/grpc4bmi /opt/grpc4bmi
+WORKDIR /opt/grpc4bmi
+RUN git submodule update --init
+WORKDIR /opt/grpc4bmi/cpp/_build
+RUN cmake .. && \
+    make && \
+    ctest && \
+    make install && \
+    make clean
+
+WORKDIR /opt
