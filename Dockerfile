@@ -38,7 +38,7 @@ RUN cmake ../.. \
     make install && \
     make clean
 
-# Build bmi-c from source
+# Build bmi-c and bmi-cxx from source
 RUN git clone --branch v${BMIC_VERSION} https://github.com/csdms/bmi-c /opt/bmi-c
 WORKDIR /opt/bmi-c/_build
 RUN cmake .. && \
@@ -49,6 +49,8 @@ WORKDIR /opt/bmi-cxx/_build
 RUN cmake .. && \
     make install && \
     make clean
+
+RUN ldconfig
 
 # Build grpc4bmi from source
 RUN git clone --branch update-dockerfile --depth 1 https://github.com/csdms/grpc4bmi /opt/grpc4bmi
