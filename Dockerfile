@@ -34,6 +34,7 @@ RUN cmake ../.. \
         -DgRPC_INSTALL=ON \
         -DgRPC_SSL_PROVIDER=package \
         -DgRPC_BUILD_TESTS=OFF \
+        -DCMAKE_CXX_STANDARD=17 \
         -DBUILD_SHARED_LIBS=ON && \
     make install && \
     make clean
@@ -57,7 +58,7 @@ RUN git clone --branch update-dockerfile --depth 1 https://github.com/csdms/grpc
 WORKDIR /opt/grpc4bmi
 RUN git submodule update --init
 WORKDIR /opt/grpc4bmi/cpp/_build
-RUN cmake .. && \
+RUN cmake .. -DCMAKE_CXX_STANDARD=17 && \
     make && \
     ctest && \
     make install && \
