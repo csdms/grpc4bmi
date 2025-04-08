@@ -66,7 +66,7 @@ The port can also be specified using the BMI_PORT environment variable. The defa
 
 .. _example_cpp:
 
-Example in C
+Example in C++
 ------------
 
 To create a BMI to your model, write a header file in which you declare the overridden functions of the base class ``Bmi`` in the included file ``bmi.h``.
