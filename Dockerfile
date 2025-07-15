@@ -25,7 +25,7 @@ RUN apt-get update && apt-get install -y \
     pkg-config \
     vim-tiny \
     wget \
-    && rm -rf /var/lib/apt/lists/*
+    && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Build grpc from source
 RUN git clone -b v${GRPC_VERSION} --depth 1 https://github.com/grpc/grpc /opt/grpc
