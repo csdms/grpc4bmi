@@ -2,8 +2,7 @@
 # planning to run a container with your BMI-enabled model and communicate with it using grpc4bmi, you can use this as a
 # base image for your model
 FROM ubuntu:24.04
-LABEL author="Gijs van den Oord"
-LABEL email="g.vandenoord@esciencecenter.nl"
+LABEL maintainer="eWaterCycle <ewatercycle@esciencecenter.nl>"
 LABEL org.opencontainers.image.source="https://github.com/eWaterCycle/grpc4bmi"
 
 ENV GRPC_VERSION="1.66.1"
