@@ -4,6 +4,7 @@
 FROM ubuntu:24.04
 LABEL author="Gijs van den Oord"
 LABEL email="g.vandenoord@esciencecenter.nl"
+LABEL org.opencontainers.image.source="https://github.com/eWaterCycle/grpc4bmi"
 
 ENV GRPC_VERSION="1.66.1"
 ENV BMIC_VERSION="2.1.2"
