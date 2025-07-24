@@ -55,9 +55,7 @@ RUN cmake .. && \
 RUN ldconfig
 
 # Build grpc4bmi from source
-RUN git clone --branch update-dockerfile --depth 1 https://github.com/csdms/grpc4bmi /opt/grpc4bmi
-WORKDIR /opt/grpc4bmi
-RUN git submodule update --init
+COPY . /opt/grpc4bmi
 WORKDIR /opt/grpc4bmi/cpp/_build
 RUN cmake .. -DCMAKE_CXX_STANDARD=17 && \
     make && \
