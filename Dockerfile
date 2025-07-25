@@ -26,10 +26,9 @@ RUN apt-get update && apt-get install -y \
     wget \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# Build grpc from source
-RUN git clone -b v${GRPC_VERSION} --depth 1 https://github.com/grpc/grpc /opt/grpc
-WORKDIR /opt/grpc
-RUN git submodule update --init --recursive
+# Build grpc from source (removing git history saves 1.7 GB)
+RUN git clone --branch v${GRPC_VERSION} --depth 1 --recurse-submodules https://github.com/grpc/grpc /opt/grpc && \
+    rm -rf /opt/grpc/.git
 WORKDIR /opt/grpc/cmake/_build
 RUN cmake ../.. \
         -DgRPC_INSTALL=ON \
