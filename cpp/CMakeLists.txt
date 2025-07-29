@@ -12,7 +12,7 @@ if (NOT DEFINED CMAKE_CXX_STANDARD)
 endif()
 
 find_package(Threads REQUIRED)
-find_package(Protobuf REQUIRED)
+find_package(Protobuf CONFIG REQUIRED)
 message(STATUS "Using protobuf ${Protobuf_VERSION}")
 find_program(GRPC_CPP_PLUGIN grpc_cpp_plugin REQUIRED)
 find_library(GRPCREFLECTION grpc++_reflection)
